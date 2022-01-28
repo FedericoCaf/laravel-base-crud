@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ComicController extends Controller
 {
@@ -25,7 +26,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**
@@ -36,7 +37,23 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $new_comic = new Comic();
+        // $new_comic->title = $data['title'];
+        // $new_comic->type = $data['type'];
+        // $new_comic->series = $data['series'];
+        // $new_comic->price = $data['price'];
+        // $new_comic->sale_date = $data['sale_date'];
+        // $new_comic->image = $data['image'];
+        // $new_comic->description = $data['description'];
+        // $new_comic->slug = Str::slug($new_comic->title, '-');
+        $data['slug'] = Str::slug($data['title'], '-');
+        $new_comic->fill($data);
+        $new_comic->save();
+
+        return redirect()->route('comics.show', $new_comic);
+
     }
 
     /**
@@ -48,8 +65,12 @@ class ComicController extends Controller
     public function show($id)
     {
         $comic = Comic::find($id);
+        if($comic){
+
+            return view('comics.show', compact('comic'));
+        }
+        abort(404, 'Fumetto non presente nel database');
         
-        return view('comics.show', compact('comic'));
     }
 
     /**
