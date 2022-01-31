@@ -6,7 +6,7 @@
   <div class="row">
 
     <div class="col-8 offset-2">
-
+{{-- 
       @if ($errors->any())
           <div class="alert alert-danger" role="alert">
               <ul>
@@ -15,7 +15,7 @@
                   @endforeach
               </ul>
           </div>
-      @endif
+      @endif --}}
 
 
       <h1 class="my-5">Modifica di {{ $comic->title }} </h1>

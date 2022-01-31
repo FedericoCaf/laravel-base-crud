@@ -6,7 +6,7 @@
   <div class="row">
 
     <div class="col-8 offset-2">
-
+{{-- 
       @if ($errors->any())
           <div class="alert alert-danger" role="alert">
               <ul>
@@ -15,7 +15,7 @@
                   @endforeach
               </ul>
           </div>
-      @endif
+      @endif --}}
 
 
       <h1 class="my-5">Aggiungi un nuovo fumetto</h1>
@@ -40,7 +40,7 @@
         <input type="text " class="form-control @error('type') is-invalid @enderror"
         value=" {{ old('type') }} "
          name="type" id="type"  placeholder="tipologia">
-         @error('title')
+         @error('type')
             <p class="form_errors">
                 {{ $message }}
             </p>
@@ -52,7 +52,7 @@
         <input type="text " class="form-control @error('series') is-invalid @enderror" 
         value=" {{ old('series') }} " 
         name="series" id="series"  placeholder="serie">
-        @error('title')
+        @error('series')
             <p class="form_errors">
                 {{ $message }}
             </p>
@@ -64,7 +64,7 @@
         <input type="number" class="form-control @error('price') is-invalid @enderror"
         value=" {{ old('price') }} "
         name="price" id="price"  placeholder="prezzo">
-        @error('title')
+        @error('price')
             <p class="form_errors">
                 {{ $message }}
             </p>
@@ -76,7 +76,7 @@
         <input type="date" class="form-control @error('sale_date') is-invalid @enderror" 
         value=" {{ old('sale_date') }} "
         name="sale_date" id="sale_date"  placeholder="data di vendita">
-        @error('title')
+        @error('sale_date')
           <p class="form_errors">
               {{ $message }}
           </p>
@@ -88,7 +88,7 @@
         <input type="text" class="form-control @error('image') is-invalid @enderror" 
         value=" {{ old('image') }} "
         name="image" id="image"  placeholder="url immagine">
-        @error('title')
+        @error('image')
           <p class="form_errors">
               {{ $message }}
           </p>
