@@ -6,42 +6,99 @@
   <div class="row">
 
     <div class="col-8 offset-2">
-      <h1 class="my-5">Modifica di  {{ $comic->title }} </h1>
-     
-        <a href=" {{ route('comics.index')}} "> torna alla lista </a>
-  
 
-    <form class="my-5" action=" {{ route('comics.update', $comic) }} " method="POST">
+      @if ($errors->any())
+          <div class="alert alert-danger" role="alert">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{$error}}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
+
+
+      <h1 class="my-5">Modifica di {{ $comic->title }} </h1>
+
+    <form action=" {{ route('comics.update', $comic) }} " method="POST">
       @csrf
       @method('PUT')
 
       <div class="mb-3">
         <label for="title" class="form-label">Titolo</label>
-        <input type="text" value="{{ $comic->title }}" class="form-control" name="title" id="title" placeholder="titolo">
+        <input type="text " class="form-control @error('title') is-invalid @enderror" 
+        value=" {{ old('title', $comic->title) }} "
+         name="title" id="title" placeholder="titolo">
+         @error('title')
+            <p class="form_errors">
+                {{ $message }}
+            </p>
+         @enderror
       </div>
+
       <div class="mb-3">
         <label for="type" class="form-label">Tipo</label>
-        <input type="text" value="{{ $comic->type }}" class="form-control" name="type" id="type"  placeholder="tipologia">
+        <input type="text " class="form-control @error('type') is-invalid @enderror"
+         value=" {{ old('type', $comic->type) }} "
+         name="type" id="type"  placeholder="tipologia">
+         @error('type')
+            <p class="form_errors">
+                {{ $message }}
+            </p>
+         @enderror
       </div>
+
       <div class="mb-3">
         <label for="series" class="form-label">Serie</label>
-        <input type="text " value="{{ $comic->series }}" class="form-control" name="series" id="series"  placeholder="serie">
+        <input type="text " class="form-control @error('series') is-invalid @enderror" 
+        value=" {{ old('series', $comic->series) }} " 
+        name="series" id="series"  placeholder="serie">
+        @error('series')
+            <p class="form_errors">
+                {{ $message }}
+            </p>
+         @enderror
       </div>
+
       <div class="mb-3">
         <label for="price" class="form-label">Prezzo</label>
-        <input type="number" value="{{ $comic->price }}" class="form-control" name="price" id="price"  placeholder="prezzo">
+        <input type="number" class="form-control @error('price') is-invalid @enderror"
+        value=" {{ old('price', $comic->price) }} "
+        name="price" id="price"  placeholder="prezzo">
+        @error('price')
+            <p class="form_errors">
+                {{ $message }}
+            </p>
+         @enderror
       </div>
+
       <div class="mb-3">
         <label for="date" class="form-label">Data di vendita</label>
-        <input type="date" value="{{ $comic->sale_date }}" class="form-control" name="sale_date" id="sale_date"  placeholder="data di vendita">
+        <input type="date" class="form-control @error('sale_date') is-invalid @enderror" 
+        value=" {{ old('sale_date', $comic->sale_date) }} "
+        name="sale_date" id="sale_date"  placeholder="data di vendita">
+        @error('sale_date')
+          <p class="form_errors">
+              {{ $message }}
+          </p>
+        @enderror
       </div>
+
       <div class="mb-3">
         <label for="image" class="form-label">Url immagine</label>
-        <input type="text" value="{{ $comic->image }}" class="form-control" name="image" id="image"  placeholder="url immagine">
+        <input type="text" class="form-control @error('image') is-invalid @enderror" 
+        value=" {{ old('image', $comic->image) }} "
+        name="image" id="image"  placeholder="url immagine">
+        @error('image')
+          <p class="form_errors">
+              {{ $message }}
+          </p>
+        @enderror
       </div>
+
       <div class="mb-3">
         <label for="description" class="form-label">Descrizione</label>
-        <textarea type="text" value="{{ $comic->description }}" class="form-control" name="description" id="description"  placeholder="descrizione"> </textarea>
+        <textarea type="text" class="form-control" name="description" id="description"  placeholder="descrizione"> {{ old('description', $comic->description) }} </textarea>
       </div>
      
     
@@ -52,6 +109,8 @@
 
   </div>
   
+
+
 </div>
 
 
